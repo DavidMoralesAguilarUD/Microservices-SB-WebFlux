@@ -5,6 +5,7 @@ import com.movies_info_services.service.MoviesInfoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -37,6 +38,24 @@ public class MoviesInfoController {
     public Flux<MovieInfo> getallMoviesinfos(){
         return moviesInfoService.getallMoviesinfos();
     }
+
+    @PutMapping("/movieinfo/{id}")
+    @ResponseStatus(HttpStatus.OK)
+
+    public Mono<ResponseEntity<MovieInfo>> updateMovieInfo(@RequestBody MovieInfo movieInfo, @PathVariable String id) {
+
+        var updatedMovieInfo = moviesInfoService.updateMovieInfo(movieInfo, id);
+
+        return updatedMovieInfo
+                .map(movieInfo1 -> ResponseEntity.ok()
+                        .body(movieInfo1))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+
+
+
+
+    }
+
 
 
 

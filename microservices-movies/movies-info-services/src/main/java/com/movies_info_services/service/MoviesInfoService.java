@@ -29,11 +29,27 @@ public class MoviesInfoService {
         return movieInfoRepository.findById(id);
     }
 
+    // Se implementa la obtencion de todas las peliculas
+
     public Flux<MovieInfo> getallMoviesinfos(){
 
         return movieInfoRepository.findAll();
 
     }
+
+    public Mono<MovieInfo> updateMovieInfo(MovieInfo movieInfo, String id) {
+
+        return movieInfoRepository.findById(id)
+                .flatMap(movieInfo1 -> {
+                    movieInfo1.setName(movieInfo.getName());
+                    movieInfo1.setYear(movieInfo.getYear());
+                    movieInfo1.setCast(movieInfo.getCast());
+                    return movieInfoRepository.save(movieInfo1);
+                });
+
+    }
+
+
 
 
 
