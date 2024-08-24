@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/v1")
@@ -29,5 +30,15 @@ public class MoviesInfoController {
     public Mono<MovieInfo> getMovieInfoById(@PathVariable String id) {
         return moviesInfoService.getMovieInfoById(id);
     }
+
+
+    @GetMapping("/moviesInfo")
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<MovieInfo> getallMoviesinfos(){
+        return moviesInfoService.getallMoviesinfos();
+    }
+
+
+
 
 }
