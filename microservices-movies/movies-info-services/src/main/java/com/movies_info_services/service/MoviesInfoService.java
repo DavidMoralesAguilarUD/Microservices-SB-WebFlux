@@ -16,10 +16,14 @@ public class MoviesInfoService {
     }
 
     public Mono<MovieInfo> addMovieInfo (MovieInfo movieInfo) {
-    log.info("addMovieInfo : {} " , movieInfo );
-    return movieInfoRepository.save(movieInfo);
+        log.info("addMovieInfo : {} " , movieInfo );
+        return movieInfoRepository.save(movieInfo);
+    }
 
-}
+    public Mono<MovieInfo> getMovieInfoById(String id) {
+        return movieInfoRepository.findById(id);
+    }
+
 
 
 }
