@@ -19,26 +19,23 @@ public class MoviesInfoController {
     public MoviesInfoController(MoviesInfoService moviesInfoService) {
         this.moviesInfoService = moviesInfoService;
     }
-
     @PostMapping("/movieinfos")
     @ResponseStatus(HttpStatus.CREATED)
+
     public Mono<MovieInfo> addMovieInfo(@RequestBody @Valid MovieInfo movieInfo) {
         return moviesInfoService.addMovieInfo(movieInfo);
     }
-
     @GetMapping("/movieinfos/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<MovieInfo> getMovieInfoById(@PathVariable String id) {
         return moviesInfoService.getMovieInfoById(id);
     }
 
-
     @GetMapping("/moviesInfo")
     @ResponseStatus(HttpStatus.OK)
     public Flux<MovieInfo> getallMoviesinfos(){
         return moviesInfoService.getallMoviesinfos();
     }
-
     @PutMapping("/movieinfo/{id}")
     @ResponseStatus(HttpStatus.OK)
 

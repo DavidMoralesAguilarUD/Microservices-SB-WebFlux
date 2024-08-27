@@ -44,8 +44,10 @@ public class MoviesInfoService {
                     movieInfo1.setName(movieInfo.getName());
                     movieInfo1.setYear(movieInfo.getYear());
                     movieInfo1.setCast(movieInfo.getCast());
-                    return movieInfoRepository.save(movieInfo1);
-                });
+                    return movieInfoRepository.save(movieInfo1)
+                            .log();
+                })
+                .log();
 
     }
 
