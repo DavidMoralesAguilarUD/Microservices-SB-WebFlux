@@ -1,0 +1,18 @@
+server:
+  port: 8081
+spring:
+  profiles:
+    active: local_reviews
+  mongodb:
+    embedded:
+      version: 4.0.21
+---
+spring:
+  config:
+    activate:
+      on-profile: local_reviews
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: movies_reviews_services

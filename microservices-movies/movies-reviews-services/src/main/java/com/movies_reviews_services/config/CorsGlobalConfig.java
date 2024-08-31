@@ -1,4 +1,4 @@
-package com.movies_info_services.config;
+package com.movies_reviews_services.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.CorsRegistry;
