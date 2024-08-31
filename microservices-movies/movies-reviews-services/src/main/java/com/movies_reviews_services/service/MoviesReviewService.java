@@ -22,7 +22,24 @@ public class MoviesReviewService {
         return  reviewsRepository.findAll();
     }
 
-    public Mono<Review> addMovieInfo(Review review) {
+    public Mono<Review> addReview(Review review) {
         return reviewsRepository.save(review);
+    }
+
+    public Mono<Review> getReviewById(String id) {
+        return reviewsRepository.findById(id);
+    }
+
+    public Mono<Review> updateReview(Review review, String id) {
+        return reviewsRepository.findById(id)
+                .flatMap(movieReview ->{
+                    movieReview.setComment(review.getComment());
+                    movieReview.setRating(review.getRating());
+                    return reviewsRepository.save(movieReview);
+                });
+    }
+
+    public Mono<Void> deleteReviewInfoById(String id) {
+        return reviewsRepository.deleteById(id);
     }
 }

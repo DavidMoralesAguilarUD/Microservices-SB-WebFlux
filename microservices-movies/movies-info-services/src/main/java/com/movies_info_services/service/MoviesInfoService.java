@@ -26,6 +26,7 @@ public class MoviesInfoService {
 
     // Se implementa la obtencion de una pelicula
     public Mono<MovieInfo> getMovieInfoById(String id) {
+
         return movieInfoRepository.findById(id);
     }
 
@@ -51,12 +52,8 @@ public class MoviesInfoService {
 
     }
 
-
-
-
-
-
-
-
+    public Mono<Void> deleteMovieInfoById(String id) {
+        return movieInfoRepository.deleteById(id);
+    }
 
 }
