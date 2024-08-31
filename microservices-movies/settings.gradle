@@ -1,2 +1,3 @@
 rootProject.name = 'microservices-movies'
 include 'movies-info-services'
+include 'movies-reviews-services'

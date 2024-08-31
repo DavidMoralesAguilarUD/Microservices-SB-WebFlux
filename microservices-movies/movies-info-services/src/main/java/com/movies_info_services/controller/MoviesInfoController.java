@@ -36,25 +36,22 @@ public class MoviesInfoController {
     public Flux<MovieInfo> getallMoviesinfos(){
         return moviesInfoService.getallMoviesinfos();
     }
+
+
     @PutMapping("/movieinfo/{id}")
     @ResponseStatus(HttpStatus.OK)
-
     public Mono<ResponseEntity<MovieInfo>> updateMovieInfo(@RequestBody MovieInfo movieInfo, @PathVariable String id) {
-
         var updatedMovieInfo = moviesInfoService.updateMovieInfo(movieInfo, id);
-
         return updatedMovieInfo
                 .map(movieInfo1 -> ResponseEntity.ok()
                         .body(movieInfo1))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
-
-
-
-
     }
 
+    @DeleteMapping("/movieinfos/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteMovieInfoById(@PathVariable String id){
+        return moviesInfoService.deleteMovieInfoById(id);
 
-
-
-
+    }
 }
